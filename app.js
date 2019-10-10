@@ -11,49 +11,52 @@ var choiceB = document.getElementById("B");
 var choiceC = document.getElementById("C");
 var highScore = document.getElementById("highScores");
 
-start.addEventListener("click", startQuiz);
+start.addEventListener("click", function();
 function startQuiz() {
   alert = "click!";
 }
 // array of questions (question~string, choices~array, answer~string, key~number)
 var questions = [
   {
-    question: "Who was the first queen to ever sashay away?",
-    choiceA: "Akashia",
-    choiceB: "Porkchop",
-    choiceC: "Bebe Zahara Benet",
-    correct: "B"
+    question: "Question 1",
+    answers: [
+      { Text: "False", correct: false },
+      { Text: "Correct", correct: true },
+      { Text: "False", correct: false }
+    ]
   },
   {
     question:
-      "During the season 4 workroom argument betwwen Phi Phi O’Hara and Sharon Needles, what does Phi Phi scream at Sharon?",
-    choiceA: "I will whoop your ass! Bitch, I am from Chicago!",
-    choiceB: "Check your lipstick before you come for me!",
-    choiceC: "Go back to party city where you belong!",
-    correct: "C"
+      "Question 2",
+    answers: [
+      { Text: "False", correct: false },
+      { Text: "False", correct: false },
+      { Text: "Correct", correct: true }
+    ]
   },
   {
     question:
-      "Mimi Imfurst became famous, or should I say infamous, for lifting which fellow drag race contestant during their “Lip Sync For Your Life” performance?",
-    choiceA: "Raja Gemini",
-    choiceB: "India Ferrah",
-    choiceC: "Delta Work",
-    correct: "B"
+    "Question 2",
+  answers: [
+    { Text: "False", correct: false },
+    { Text: "Correct", correct: true },
+    { Text: "False", correct: false }
   },
   {
     question:
-      "Who are only four queens who have won the crown without needing to lip sync for their lives?",
-    choiceA: "Tyra Sanchez, Bianca Del Rio, Violet Chachki, Sasha Velour",
-    choiceB: "Raja, Jinkx Monsoon, Alaska, Bob the Drag Queen",
-    choiceC:
-      "BeBe Zehara Benet, Sharon Needles, Bianca Del Rio, Violet Chachki",
-    correct: "A"
-  }
+    "Question 2",
+  answers: [
+    { Text: "Correct", correct: true },
+    { Text: "False", correct: false },
+    { Text: "False", correct: false }
+  },
 ];
 
 // score
 // helper functions
-
+function renderQuestion(index) {
+  return questions[index].title;
+}
 // helper functions
 
 // events
