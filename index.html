@@ -8,30 +8,34 @@
     <title>My Quiz</title>
   </head>
   <body>
-    <!-- header -->
-    <div id="header">Welcome to my Quiz</div>
-    <!-- view highscores -->
-    <button id="highScore"></button>
-    <!-- timer -->
-    <div id="timer"></div>
+    <div id="container">
+      <!-- header -->
+      <div id="header">Welcome to my Quiz</div>
+      <!-- view highscores -->
+      <button id="scoreBtn">High Scores</button>
+      <!-- timer -->
+      <div id="timer"></div>
 
-    <!-- content -->
+      <!-- content -->
 
-    <!-- intial state div -->
+      <!-- intial state div -->
 
-    <!-- button to start quiz -->
-    <button id="start">Start Quiz</button>
-    <!-- game div -->
-    <div id="quiz">
-      <!-- replace with question and choices whcen quiz is clicked -->
-      <div id="question1">
-        <p>Question 1</p>
-        <div id="choiceA"></div>
-        <div id="choiceB"></div>
-        <div id="choiceC"></div>
+      <!-- button to start quiz -->
+      <button id="start">Start Quiz</button>
+      <!-- game div -->
+      <div id="quiz">
+        <!-- replace with question and choices when quiz is clicked -->
+        <div id="question">
+          <div id="answers">
+            <div id="A"></div>
+            <div id="B"></div>
+            <div id="C"></div>
+          </div>
+        </div>
       </div>
     </div>
     <!-- high score div -->
+    <div id="highScores"></div>
     <!-- replace with highscores when scores is clicked -->
     <script src="app.js"></script>
   </body>
