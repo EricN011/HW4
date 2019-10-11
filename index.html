@@ -10,29 +10,35 @@
   <body>
     <div id="container">
       <!-- header -->
-      <div id="header">Welcome to my Quiz</div>
-      <!-- view highscores -->
-      <button id="scoreBtn">High Scores</button>
-      <!-- timer -->
-      <div id="timer"></div>
+      <header id="header">
+        <!-- view highscores -->
+        <button id="scoreBtn">High Scores</button>
+        Welcome to my Quiz
+
+        <!-- timer -->
+        <div id="timer">60 Secs</div>
+      </header>
 
       <!-- content -->
 
       <!-- intial state div -->
 
-      <!-- button to start quiz -->
-      <button id="start">Start Quiz</button>
       <!-- game div -->
-      <div class="container hide" id="quiz">
+      <div class="container hide" id="qContainer">
         <!-- replace with question and choices when quiz is clicked -->
-        <div id="question">
-          <div id="answers">
-            <div id="A"></div>
-            <div id="B"></div>
-            <div id="C"></div>
-          </div>
+        <div id="question">Question</div>
+        <div id="answers">
+          <button id="A">Answer A</button>
+          <button id="B">Answer B</button>
+          <button id="C">Answer C</button>
+          <button id="D">Answer D</button>
         </div>
       </div>
+    </div>
+    <!-- button to start quiz -->
+    <div id="quizControls">
+      <button id="start">Start Quiz</button>
+      <button id="next" class="hide">Next</button>
     </div>
     <!-- high score div -->
     <div id="highScores"></div>
