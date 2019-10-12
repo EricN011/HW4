@@ -1,12 +1,23 @@
 // variables
-var start = document.getElementById("start");
+var startQ = document.getElementById("start");
+var questions = document.getElementById("question");
+var answers = document.getElementById("answers");
 
 start.addEventListener("click", startQuiz);
 function startQuiz() {
-  alert("click!");
+  startQ.classList.add("hide");
+  questions.classList.remove("hide");
+  answers.classList.remove("hide");
+  nextQuestion();
+}
+
+function nextQuestion() {}
+
+function showQuestion() {
+  var q = questArray[currentQuestion];
 }
 // array of questions (question~string, choices~array, answer~string, key~number)
-var questions = [
+let questions = [
   {
     question: "Question 1",
     choices: ["False", "Correct", "False", "False"],

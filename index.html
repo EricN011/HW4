@@ -8,37 +8,38 @@
     <title>My Quiz</title>
   </head>
   <body>
-    <div id="container">
-      <!-- header -->
-      <header id="header">
-        <!-- view highscores -->
-        <button id="scoreBtn">High Scores</button>
-        Welcome to my Quiz
+    <!-- header -->
+    <header class="header" id="header">
+      <!-- view highscores -->
+      <button id="scoreBtn">High Scores</button>
+      Welcome to my Quiz
 
-        <!-- timer -->
-        <div id="timer">60 Secs</div>
-      </header>
+      <!-- timer -->
+      <div id="timer">60 Secs</div>
+    </header>
+    <div class="body">
+      <div class="container" id="container">
+        <!-- content -->
 
-      <!-- content -->
+        <!-- intial state div -->
 
-      <!-- intial state div -->
-
-      <!-- game div -->
-      <div class="container hide" id="qContainer">
-        <!-- replace with question and choices when quiz is clicked -->
-        <div id="question">Question</div>
-        <div id="answers">
-          <button id="A">Answer A</button>
-          <button id="B">Answer B</button>
-          <button id="C">Answer C</button>
-          <button id="D">Answer D</button>
+        <!-- game div -->
+        <div class="qContainer" id="qContainer">
+          <!-- replace with question and choices when quiz is clicked -->
+          <div class="hide" id="question">Question</div>
+          <div class="answers hide" id="answers">
+            <button class="btn" id="A">Answer A</button>
+            <button class="btn" id="B">Answer B</button>
+            <button class="btn" id="C">Answer C</button>
+            <button class="btn" id="D">Answer D</button>
+          </div>
+          <!-- button to start quiz -->
+          <div class="quizControls" id="quizControls">
+            <button class="start btn" id="start">Start Quiz</button>
+            <button class="next btn hide" id="next">Next</button>
+          </div>
         </div>
       </div>
-    </div>
-    <!-- button to start quiz -->
-    <div id="quizControls">
-      <button id="start">Start Quiz</button>
-      <button id="next" class="hide">Next</button>
     </div>
     <!-- high score div -->
     <div id="highScores"></div>
