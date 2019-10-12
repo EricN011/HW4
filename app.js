@@ -8,7 +8,10 @@ var choiceA = document.getElementById("A");
 var choiceB = document.getElementById("B");
 var choiceC = document.getElementById("C");
 var choiceD = document.getElementById("D");
-var next = document.getElementById("next");
+var finQuiz = document.getElementById("finishQuiz");
+var quizPage = document.getElementById("quizPage");
+var submit = document.getElementById("submit");
+var highScores = document.getElementById("highScores");
 
 // array of questions (question~string, choices~array, answer~string, key~number)
 let questions = [
@@ -51,13 +54,13 @@ function startQuiz() {
   startQ.classList.add("hide");
   question.classList.remove("hide");
   choices.classList.remove("hide");
-  showQuestion();
+  renderQuestion();
 }
 var finalQuestion = questions.length - 1;
-var contQuestion = 0;
+var nextQuestion = 0;
 
-function showQuestion() {
-  var q = questions[contQuestion];
+function renderQuestion() {
+  var q = questions[nextQuestion];
 
   question.innerHTML = "<p>" + q.question + "</p>";
   choiceA.innerHTML = q.choiceA;
@@ -67,10 +70,24 @@ function showQuestion() {
 }
 
 function checkAnswer(answer) {
-  if (answer == questions[runningQuestion].correct) {
-    score++;
+  if (nextQuestion < finalQuestion) {
+    nextQuestion++;
+    renderQuestion();
   } else {
+    completeQuiz();
   }
+}
+
+function completeQuiz() {
+  quizPage.classList.add("hide");
+  finQuiz.classList.remove("hide");
+}
+
+submit.addEventListener("click", showScores);
+function showScores(btnClick) {
+  btnClick.preventDefault();
+  finQuiz.classList.add("hide");
+  highScores.classList.remove("hide");
 }
 
 // score
