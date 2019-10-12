@@ -1,62 +1,81 @@
 // variables
 var startQ = document.getElementById("start");
-var questions = document.getElementById("question");
-var answers = document.getElementById("answers");
+var score = document.getElementById("scoreBtn");
+var timer = document.getElementById("timer");
+var question = document.getElementById("question");
+var choices = document.getElementById("answers");
+var choiceA = document.getElementById("A");
+var choiceB = document.getElementById("B");
+var choiceC = document.getElementById("C");
+var choiceD = document.getElementById("D");
+var next = document.getElementById("next");
 
-start.addEventListener("click", startQuiz);
-function startQuiz() {
-  startQ.classList.add("hide");
-  questions.classList.remove("hide");
-  answers.classList.remove("hide");
-  nextQuestion();
-}
-
-function nextQuestion() {}
-
-function showQuestion() {
-  var q = questArray[currentQuestion];
-}
 // array of questions (question~string, choices~array, answer~string, key~number)
 let questions = [
   {
     question: "Question 1",
-    choices: ["False", "Correct", "False", "False"],
-    answer: "Correct"
+    choiceA: "False",
+    choiceB: "Correct",
+    choiceC: "False",
+    choiceD: "False",
+    correct: "B"
   },
   {
     question: "Question 2",
-    answers: [
-      { Text: "False", correct: false },
-      { Text: "False", correct: false },
-      { Text: "Correct", correct: true },
-      { Text: "False", correct: false }
-    ]
+    choiceA: "Correct",
+    choiceB: "False",
+    choiceC: "False",
+    choiceD: "False",
+    correct: "A"
   },
   {
     question: "Question 3",
-    answers: [
-      { Text: "False", correct: false },
-      { Text: "False", correct: false },
-      { Text: "False", correct: false },
-      { Text: "Correct", correct: true }
-    ]
+    choiceA: "False",
+    choiceB: "False",
+    choiceC: "Correct",
+    choiceD: "False",
+    correct: "C"
   },
   {
     question: "Question 4",
-    answers: [
-      { Text: "Correct", correct: true },
-      { Text: "False", correct: false },
-      { Text: "False", correct: false },
-      { Text: "False", correct: false }
-    ]
+    choiceA: "False",
+    choiceB: "False",
+    choiceC: "False",
+    choiceD: "Correct",
+    correct: "D"
   }
 ];
 
+start.addEventListener("click", startQuiz);
+function startQuiz() {
+  startQ.classList.add("hide");
+  question.classList.remove("hide");
+  choices.classList.remove("hide");
+  showQuestion();
+}
+var finalQuestion = questions.length - 1;
+var contQuestion = 0;
+
+function showQuestion() {
+  var q = questions[contQuestion];
+
+  question.innerHTML = "<p>" + q.question + "</p>";
+  choiceA.innerHTML = q.choiceA;
+  choiceB.innerHTML = q.choiceB;
+  choiceC.innerHTML = q.choiceC;
+  choiceD.innerHTML = q.choiceD;
+}
+
+function checkAnswer(answer) {
+  if (answer == questions[runningQuestion].correct) {
+    score++;
+  } else {
+  }
+}
+
 // score
 // helper functions
-function renderQuestion(index) {
-  return questions[index].title;
-}
+
 // helper functions
 
 // events
