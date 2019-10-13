@@ -72,6 +72,15 @@
   border-bottom: solid;
 }
 
+.button-correct {
+  background-color: green;
+  text: white;
+}
+
+.button-incorrect {
+  color: red;
+}
+
 .hide {
   display: none;
 }

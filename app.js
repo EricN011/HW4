@@ -1,6 +1,6 @@
 // variables
 var startQ = document.getElementById("start");
-var score = document.getElementById("scoreBtn");
+var scoreBtn = document.getElementById("scoreBtn");
 var timer = document.getElementById("timer");
 var question = document.getElementById("question");
 var choices = document.getElementById("answers");
@@ -12,7 +12,9 @@ var finQuiz = document.getElementById("finishQuiz");
 var quizPage = document.getElementById("quizPage");
 var submit = document.getElementById("submit");
 var highScores = document.getElementById("highScores");
-
+var restart = document.getElementById("restart");
+var clear = document.getElementById("clear");
+var score = document.getElementById("score");
 // array of questions (question~string, choices~array, answer~string, key~number)
 let questions = [
   {
@@ -48,19 +50,53 @@ let questions = [
     correct: "D"
   }
 ];
+// timer
+var secondsLeft = 59;
+var countDown = secondsLeft;
 
+// Events
+
+// set timer funtion
+function startTimer() {
+  var countDown = setInterval(function() {
+    timer.textContent = "Time Left: " + secondsLeft;
+
+    if (secondsLeft > 0) {
+      secondsLeft--;
+    } else {
+      clearInterval(countDown);
+      score.textContent = secondsLeft;
+      completeQuiz();
+    }
+  }, 1000);
+}
+
+function completeQuiz() {
+  quizPage.classList.add("hide");
+  finQuiz.classList.remove("hide");
+}
+
+scoreBtn.addEventListener("click", scorePage);
+function scorePage() {
+  quizPage.classList.add("hide");
+  highScores.classList.remove("hide");
+}
+
+// start quiz
 start.addEventListener("click", startQuiz);
 function startQuiz() {
   startQ.classList.add("hide");
   question.classList.remove("hide");
   choices.classList.remove("hide");
   renderQuestion();
+  startTimer();
 }
+
 var finalQuestion = questions.length - 1;
-var nextQuestion = 0;
+var currentQuestion = 0;
 
 function renderQuestion() {
-  var q = questions[nextQuestion];
+  var q = questions[currentQuestion];
 
   question.innerHTML = "<p>" + q.question + "</p>";
   choiceA.innerHTML = q.choiceA;
@@ -70,17 +106,19 @@ function renderQuestion() {
 }
 
 function checkAnswer(answer) {
-  if (nextQuestion < finalQuestion) {
-    nextQuestion++;
+  if (answer == questions[currentQuestion].correct) {
+    currentQuestion++;
+  } else {
+    alert("wrong");
+    secondsLeft -= 15;
+  }
+  if (currentQuestion <= finalQuestion) {
     renderQuestion();
   } else {
+    clearInterval(countDown);
+    score.textContent = secondsLeft;
     completeQuiz();
   }
-}
-
-function completeQuiz() {
-  quizPage.classList.add("hide");
-  finQuiz.classList.remove("hide");
 }
 
 submit.addEventListener("click", showScores);
@@ -89,6 +127,8 @@ function showScores(btnClick) {
   finQuiz.classList.add("hide");
   highScores.classList.remove("hide");
 }
+
+restart.addEventListener("click", startQuiz);
 
 // score
 // helper functions
@@ -104,7 +144,6 @@ function showScores(btnClick) {
 
 // clear highscores
 // go back
-// start quiz
 
 // choose answer
 // enter initials and submit score, go to highscore event
