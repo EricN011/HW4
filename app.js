@@ -15,6 +15,10 @@ var highScores = document.getElementById("highScores");
 var restart = document.getElementById("restart");
 var clear = document.getElementById("clear");
 var score = document.getElementById("score");
+var initialsInput = document.querySelector("#initials");
+var userInitialsSpan = document.querySelector("#user-initials");
+var msgDiv = document.getElementById("msg");
+
 // array of questions (question~string, choices~array, answer~string, key~number)
 let questions = [
   {
@@ -65,7 +69,6 @@ function startTimer() {
       secondsLeft--;
     } else {
       clearInterval(countDown);
-      score.textContent = secondsLeft;
       completeQuiz();
     }
   }, 1000);
@@ -74,6 +77,8 @@ function startTimer() {
 function completeQuiz() {
   quizPage.classList.add("hide");
   finQuiz.classList.remove("hide");
+  score.style.display = "block";
+  score.innerHTML += "<p>" + secondsLeft + "</p>";
 }
 
 scoreBtn.addEventListener("click", scorePage);
@@ -108,25 +113,37 @@ function renderQuestion() {
 function checkAnswer(answer) {
   if (answer == questions[currentQuestion].correct) {
     currentQuestion++;
+    msgDiv.style.display = "block";
+    msgDiv.innerHTML = "<p>" + " " + "</p>";
   } else {
-    alert("wrong");
+    // alert("wrong");
     secondsLeft -= 15;
+    function displayMessage() {
+      msgDiv.style.display = "block";
+      msgDiv.innerHTML = "<p>" + "Wrong" + "</p>";
+    }
+    displayMessage();
   }
   if (currentQuestion <= finalQuestion) {
     renderQuestion();
   } else {
     clearInterval(countDown);
-    score.textContent = secondsLeft;
+
     completeQuiz();
   }
 }
 
-submit.addEventListener("click", showScores);
-function showScores(btnClick) {
+submit.addEventListener("click", function(btnClick) {
   btnClick.preventDefault();
   finQuiz.classList.add("hide");
   highScores.classList.remove("hide");
-}
+
+  initialsInput.value;
+  console.log(initialsInput);
+  localStorage.setItem("initialsInput", JSON.stringify(initialsInput));
+  var lastUser = JSON.parse(localStorage.getItem("intialsInput"));
+  userInitialsSpan.textContent = lastUser.initials;
+});
 
 restart.addEventListener("click", startQuiz);
 
