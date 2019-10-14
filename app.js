@@ -137,8 +137,6 @@ function completeQuiz() {
     var user = initialsInput.value;
     localStorage.setItem("user#" + inputCount, user);
 
-    var lastUser = localStorage.getItem("initialsInput");
-    console.log(lastUser);
     // combine the initials and the score
     var x = user;
     var y = finalScore;
