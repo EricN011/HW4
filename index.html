@@ -8,13 +8,22 @@
     <title>My Quiz</title>
   </head>
   <body>
+    <audio id="theme" src="01 - Super Mario Bros.mp3" preload="auto"></audio>
+    <audio id="badEnding" src="smb_mariodie.wav" preload="auto"></audio>
+    <audio id="goodEnding" src="smb_stage_clear.wav" preload="auto"></audio>
+    <audio id="bump">
+      <source src="smb3_bump.wav" type="audio/wav" />
+    </audio>
+    <audio id="coin">
+      <source src="smb3_coin.wav" type="audio/wav" />
+    </audio>
+
     <!-- header -->
     <div id="quizPage" class="quizPage">
       <header class="header" id="header">
         <!-- view highscores -->
-        <button id="scoreBtn">High Scores</button>
-        Welcome to my Quiz
-
+        <button id="scoreBtn" class="header btn">High Scores</button>
+        Super Mario Quiz
         <!-- timer -->
         <div id="timer">Time Left: 60</div>
       </header>
@@ -27,20 +36,12 @@
           <!-- game div -->
           <div class="qContainer" id="qContainer">
             <!-- replace with question and choices when quiz is clicked -->
-            <div class="hide" id="question">Question</div>
+            <div class="hide finHead" id="question">Question</div>
             <div class="answers hide" id="answers">
-              <button class="btn" id="A" onclick="checkAnswer('A')">
-                Answer A
-              </button>
-              <button class="btn" id="B" onclick="checkAnswer('B')">
-                Answer B
-              </button>
-              <button class="btn" id="C" onclick="checkAnswer('C')">
-                Answer C
-              </button>
-              <button class="btn" id="D" onclick="checkAnswer('D')">
-                Answer D
-              </button>
+              <button class="btn" id="A" onclick="checkAnswer('A')"></button>
+              <button class="btn" id="B" onclick="checkAnswer('B')"></button>
+              <button class="btn" id="C" onclick="checkAnswer('C')"></button>
+              <button class="btn" id="D" onclick="checkAnswer('D')"></button>
             </div>
             <div id="msg"></div>
             <!-- button to start quiz -->
@@ -55,12 +56,14 @@
 
     <div id="finishQuiz" class="body hide">
       <form class="finish">
-        <header class="finHead">Congratulations!</header>
+        <header id="initialHeader" class="finHead">
+          Congratulations! You Saved the Princess
+        </header>
         <div>
           Here's your score:
           <div id="score"></div>
         </div>
-        <label for="fname">Enter your Initials</label>
+        <label for="fname" class="text">Enter your Initials</label>
         <input type="text" id="initials" name="initials" />
         <input type="submit" id="submit" value="Submit" />
       </form>
@@ -69,10 +72,10 @@
     <div id="highScores" class="body hide">
       <div class="finish">
         <header class="finHead">High Scores</header>
-        <div id="finalScore">High score list</div>
+        <div id="finalScore" class="text">High score list</div>
         <p><span id="user-initials"></span></p>
-        <button id="restart" class="restart">Restart</button>
-        <button id="clear">Clear Scores</button>
+        <button id="restart" class="btn">Restart</button>
+        <button id="clear" class="btn">Clear Scores</button>
       </div>
     </div>
     <script src="app.js"></script>

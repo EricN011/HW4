@@ -13,48 +13,74 @@ var quizPage = document.getElementById("quizPage");
 var submit = document.getElementById("submit");
 var highScores = document.getElementById("highScores");
 var restart = document.getElementById("restart");
-var clear = document.getElementById("clear");
 var score = document.getElementById("score");
 var initialsInput = document.querySelector("#initials");
 var userInitialsSpan = document.querySelector("#user-initials");
 var msgDiv = document.getElementById("msg");
 var userScore = document.getElementById("finalScore");
+var coin = document.getElementById("coin");
+var bump = document.getElementById("bump");
+var theme = document.getElementById("theme");
+var good = document.getElementById("goodEnding");
+var bad = document.getElementById("badEnding");
+var initHead = document.getElementById("initialHeader");
 
 // array of questions (question~string, choices~array, answer~string, key~number)
 let questions = [
   {
-    question: "Question 1",
-    choiceA: "False",
-    choiceB: "Correct",
-    choiceC: "False",
-    choiceD: "False",
+    question: "Who was Mario's first ever adversary?",
+    choiceA: "Bowser",
+    choiceB: "Donkey Kong",
+    choiceC: "Wario",
+    choiceD: "Sephiroth",
     correct: "B"
   },
   {
-    question: "Question 2",
-    choiceA: "Correct",
-    choiceB: "False",
-    choiceC: "False",
-    choiceD: "False",
+    question:
+      "Which item, from another Nintendo franchise, made an appearance in 'Super Mario 3'",
+    choiceA: '"Warp Whistle" from "Legend of Zelda"',
+    choiceB: '"Blue Shell" from "Mario Kart"',
+    choiceC: '"Pokeball" from "Pokemon"',
+    choiceD: '"Bomb" from "Bomberman"',
     correct: "A"
   },
   {
-    question: "Question 3",
-    choiceA: "False",
-    choiceB: "False",
-    choiceC: "Correct",
-    choiceD: "False",
+    question: "What was Bowser's original name?",
+    choiceA: "Terror Turtle",
+    choiceB: "Evil Emporer",
+    choiceC: "King Koopa",
+    choiceD: "Mushroom Maniac",
     correct: "C"
   },
   {
-    question: "Question 4",
-    choiceA: "False",
-    choiceB: "False",
-    choiceC: "False",
-    choiceD: "Correct",
+    question:
+      '"Zelda: Links Awakening" features this boss from "Super Mario Bros 2"',
+    choiceA: "Toad",
+    choiceB: "Frog",
+    choiceC: "Blister",
+    choiceD: "Wart",
     correct: "D"
   }
 ];
+// load my audio
+function playBump() {
+  bump.play();
+}
+function playCoin() {
+  coin.play();
+}
+function playTheme() {
+  theme.play();
+}
+function pauseTheme() {
+  theme.pause();
+}
+function playGood() {
+  good.play();
+}
+function playBad() {
+  bad.play();
+}
 
 // High Score Button
 scoreBtn.addEventListener("click", scorePage);
@@ -86,9 +112,18 @@ function startTimer() {
 
 //end of quiz
 function completeQuiz() {
+  pauseTheme();
   quizPage.classList.add("hide");
   finQuiz.classList.remove("hide");
+
   var finalScore = secondsLeft;
+  if (finalScore <= 20) {
+    playBad();
+    initHead.style.display = "block";
+    initHead.innerHTML = "<p>" + "Oh No! Bowser Escaped!" + "</p>";
+  } else {
+    playGood();
+  }
   //display score
   score.style.display = "block";
   score.innerHTML += "<p>" + finalScore + "</p>";
@@ -111,8 +146,8 @@ function completeQuiz() {
     var z = user + " = " + finalScore;
     console.log(z);
     // post the score in the high scores page
+    userScore.style.display = "block";
     userScore.innerHTML = "<p>" + z + "</p>";
-    userScore++;
   });
 }
 
@@ -126,6 +161,7 @@ function startQuiz() {
   startQ.classList.add("hide");
   question.classList.remove("hide");
   choices.classList.remove("hide");
+  playTheme();
   renderQuestion();
   startTimer();
 }
@@ -147,6 +183,7 @@ function checkAnswer(answer) {
     currentQuestion++;
     msgDiv.style.display = "block";
     msgDiv.innerHTML = "<p>" + " " + "</p>";
+    playCoin();
     // incorrect answer
   } else {
     // punish them with time penalty
@@ -157,6 +194,7 @@ function checkAnswer(answer) {
       msgDiv.innerHTML = "<p>" + "Wrong" + "</p>";
     }
     displayMessage();
+    playBump();
   }
   // continue funneling through questions
   if (currentQuestion <= finalQuestion) {
@@ -178,10 +216,12 @@ function restartQuiz() {
   question.classList.add("hide");
   choices.classList.add("hide");
   currentQuestion = 0;
-  secondsLeft = 60;
+  secondsLeft = 59;
   renderQuestion();
   startTimer();
+  clearInterval(countDown);
 }
+
 // score
 // helper functions
 
